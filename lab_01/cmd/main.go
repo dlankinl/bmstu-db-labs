@@ -25,7 +25,7 @@ func copyFilesToDocker(dockerID, hostPath, dockerPath string) {
 
 func init() {
 	var err error
-	db, err = sql.Open("postgres", "user=postgres dbname=postgres password=postgres host=localhost port=5432 sslmode=disable")
+	db, err = sql.Open("postgres", "user=postgres dbname=postgres password=postgres host=localhost port=5438 sslmode=disable")
 	if err != nil {
 		fmt.Println(err)
 	}

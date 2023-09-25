@@ -2,9 +2,9 @@
 
 DROP SCHEMA IF EXISTS lab CASCADE;
 
-CREATE SCHEMA lab;
+CREATE SCHEMA IF NOT EXISTS lab;
 
-CREATE TABLE lab.Enterpreneurs(
+CREATE TABLE IF NOT EXISTS lab.Enterpreneurs(
     id SERIAL PRIMARY KEY,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
@@ -15,13 +15,13 @@ CREATE TABLE lab.Enterpreneurs(
     birth_date DATE
 );
 
-CREATE TABLE lab.Cities(
+CREATE TABLE IF NOT EXISTS lab.Cities(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL DEFAULT 'Moscow',
     population INT NOT NULL
 );
 
-CREATE TABLE lab.Financials(
+CREATE TABLE IF NOT EXISTS lab.Financials(
     id SERIAL PRIMARY KEY,
     revenue DECIMAL(15, 2),
     profit DECIMAL(15, 2),
@@ -29,18 +29,18 @@ CREATE TABLE lab.Financials(
     taxes DECIMAL(15, 2)
 );
 
-CREATE TABLE lab.EnterpreneurSkill(
+CREATE TABLE IF NOT EXISTS lab.EnterpreneurSkill(
     enterpreneur_id INT,
     name TEXT NOT NULL,
     skill_id INT
 );
 
-CREATE TABLE lab.SkillDescription(
+CREATE TABLE IF NOT EXISTS lab.SkillDescription(
     skill_id SERIAL PRIMARY KEY,
     description TEXT
 );
 
-CREATE TABLE lab.Companies(
+CREATE TABLE IF NOT EXISTS lab.Companies(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     owner_id INT,
