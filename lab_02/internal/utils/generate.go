@@ -95,7 +95,7 @@ func GenerateFinancials(count int) ([][]string, []string) {
 		financials[i] = generateFinancial(ran)
 	}
 
-	header := []string{"revenut", "profit", "total_assets", "taxes"}
+	header := []string{"revenue", "profit", "total_assets", "taxes"}
 
 	return financials, header
 }
