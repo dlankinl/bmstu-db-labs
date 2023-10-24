@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
-	"db1/lab_01/internal/utils"
 	"fmt"
 	_ "github.com/lib/pq"
+	"lab_01/internal/utils"
 	"os"
 	"os/exec"
 	"path/filepath"

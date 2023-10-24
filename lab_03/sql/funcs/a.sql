@@ -27,6 +27,8 @@ from get_companies_in_city('Baldock');
 -- 3. Многооператорная табличная функция
 -- Возвращает таблицу с id, name, age компаний, расположенных в данном городе,
 -- владельцы которых младше данного возраста
+
+-- FIXME: вообще это не многооператорная табличная функция
 create or replace function get_companies_in_city_with_enterpreneur_le_age(city text, age_ int)
     returns table(
         id int,
@@ -47,8 +49,9 @@ create or replace function get_companies_in_city_with_enterpreneur_le_age(city t
 select *
 from get_companies_in_city_with_enterpreneur_le_age('Baldock', 30);
 
--- 4. Рекурсивная функция или функция с рекурсивным ОТВ
-create or replace function fib(first int, second int,max int)
+-- 4. Рекурсивная функция
+-- Вычисляются числа Фибоначчи до max
+create or replace function fibF(first int, second int, max int)
     returns table (
         cur int,
         next int,
@@ -60,9 +63,9 @@ create or replace function fib(first int, second int,max int)
         if second <= max then
             return query
                 select *
-                from fib(second, first + second, max);
+                from fibF(second, first + second, max);
         end if;
     end' language plpgsql;
 
-SELECT *
-FROM fib(1,1, 13);
+select *
+from fibF(1, 1, 16);
