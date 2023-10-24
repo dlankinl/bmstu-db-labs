@@ -2,9 +2,9 @@ package main
 
 import (
 	"database/sql"
-	"db1/lab_01/internal/utils"
 	"fmt"
 	_ "github.com/lib/pq"
+	"lab_02/internal/utils"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -36,7 +36,7 @@ func init() {
 }
 
 func handleQueries(containerID, hostPath, dockerPath string) {
-	createQueryPath := filepath.Join("lab_01", "sql", "create.sql")
+	createQueryPath := filepath.Join("sql", "create.sql")
 	query, err := os.ReadFile(createQueryPath)
 	if err != nil {
 		fmt.Println("error", err)
@@ -51,7 +51,7 @@ func handleQueries(containerID, hostPath, dockerPath string) {
 		return
 	}
 
-	createQueryPath = filepath.Join("lab_01", "sql", "constraints.sql")
+	createQueryPath = filepath.Join("sql", "constraints.sql")
 	query, err = os.ReadFile(createQueryPath)
 	if err != nil {
 		fmt.Println("error", err)
@@ -68,7 +68,7 @@ func handleQueries(containerID, hostPath, dockerPath string) {
 
 	copyFilesToDocker(containerID, hostPath, dockerPath)
 
-	createQueryPath = filepath.Join("lab_01", "sql", "copy.sql")
+	createQueryPath = filepath.Join("sql", "copy.sql")
 	query, err = os.ReadFile(createQueryPath)
 	if err != nil {
 		fmt.Println("error", err)
@@ -89,7 +89,7 @@ func main() {
 
 	// Paste your values
 	containerID := "fed0ec6f6325"
-	hostPath := "/Users/dmitry/Desktop/bmstu/db1/lab_01/data/."
+	hostPath := "/Users/dmitry/Desktop/bmstu/db1/lab_02/data/."
 	dockerPath := "/var/lib/postgresql/data/csv"
 
 	people, pHeader := utils.GenerateEnterpreneurs(count)
@@ -99,7 +99,7 @@ func main() {
 	skillsDescr, sDHeader := utils.GenerateSkillsDescriptions(count)
 	skillsNames, sNHeader := utils.GenerateSkillsNames(count)
 
-	dataPath := filepath.Join("lab_01", "data")
+	dataPath := filepath.Join("data")
 
 	enterpreneursPath := filepath.Join(dataPath, "enterpreneurs.csv")
 	citiesPath := filepath.Join(dataPath, "cities.csv")
