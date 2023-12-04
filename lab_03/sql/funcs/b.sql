@@ -114,3 +114,33 @@ as '
 ' language plpgsql;
 
 call meta_data('enterpreneurs');
+
+-- 5. Хранимая процедура, меняющая статус холост на женат для мужчин, возраст которых меньше age
+create or replace procedure marry_males(age_ int)
+as '
+    begin
+        update lab.enterpreneurs
+            set married = true
+        where gender = true
+            and age < age_
+            and married = false;
+    end;
+' language plpgsql;
+
+select first_name, last_name, married, id
+from lab.enterpreneurs
+where gender = true
+    and age < 20
+    and married = false;
+
+update lab.enterpreneurs
+    set married = false
+where id in (select id
+             from lab.enterpreneurs
+             where married = true
+                and gender = true
+                and age < 20);
+
+
+select *
+from pg_tables;

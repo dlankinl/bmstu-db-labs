@@ -69,3 +69,26 @@ create or replace function fibF(first int, second int, max int)
 
 select *
 from fibF(1, 1, 16);
+
+
+
+
+
+-- Optionally
+-- Добавить предпринимателя
+create or replace function insert_entrepreneur(
+    first_name text,
+    last_name text,
+    age int,
+    gender boolean,
+    married boolean,
+    net_worth int,
+    birth_date date
+) returns table(id int) as '
+    insert into lab.enterpreneurs(first_name, last_name, age, gender, married, net_worth, birth_date)
+    values (first_name, last_name, age, gender, married, net_worth, birth_date)
+    returning id;
+' language sql;
+
+select *
+from insert_entrepreneur('S', 'B', 12, true, false, 34, '2004-12-12');
